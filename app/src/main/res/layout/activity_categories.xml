@@ -4,23 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EBF8EC"
     tools:context=".Categories">
 
     <TextView
         android:id="@+id/textView18"
-        android:layout_width="106dp"
-        android:layout_height="23dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="154dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="154dp"
         android:layout_marginBottom="16dp"
         android:text="CATEGORIES"
         android:textAlignment="center"
+        android:textColor="#3F5740"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -29,11 +34,12 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="23dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="614dp"
+        android:layout_marginBottom="516dp"
         android:gravity="center|center_horizontal"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11">
 
@@ -42,6 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:buttonTint="#89A68B"
             android:text="Expense"
             android:textAlignment="center" />
 
@@ -50,9 +57,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:buttonTint="#89A68B"
             android:text="Income"
             android:textAlignment="center" />
-
     </RadioGroup>
 
     <androidx.fragment.app.FragmentContainerView
@@ -65,8 +72,10 @@
         android:layout_marginBottom="72dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/categorry_button"
@@ -75,6 +84,7 @@
         android:layout_marginStart="177dp"
         android:layout_marginEnd="178dp"
         android:layout_marginBottom="16dp"
+        android:backgroundTint="#89A68B"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
