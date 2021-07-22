@@ -11,12 +11,14 @@
     tools:openDrawer="start">
 
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationview"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/navigationview"
+        android:layout_gravity="start"
         app:headerLayout="@layout/header"
-        app:menu="@menu/sidemenu"
-        android:layout_gravity="start">
+        app:itemIconTint="@color/green"
+        app:itemTextColor="#76A178"
+        app:menu="@menu/sidemenu">
 
     </com.google.android.material.navigation.NavigationView>
 

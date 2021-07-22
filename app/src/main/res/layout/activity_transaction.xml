@@ -5,6 +5,7 @@
     android:id="@+id/transaction_group"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EBF8EC"
     tools:context=".Transaction">
 
     <RadioGroup
@@ -27,16 +28,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:buttonTint="#89A68B"
             android:text="Expenses"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="#252320"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/Income_rad_trans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="#89A68B"
+            android:text="Income"
+            android:textAlignment="center"
+            android:textColor="#252320"
+            android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/rad_savings_trans"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:buttonTint="#89A68B"
             android:text="Savings"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="#252320"
+            android:textStyle="bold" />
 
     </RadioGroup>
 
@@ -49,6 +67,11 @@
         android:layout_marginEnd="120dp"
         android:layout_marginBottom="16dp"
         android:text="TRANSACTION HISTORY"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="#3F5740"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/radioGroup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -70,16 +93,7 @@
             android:id="@+id/trans_list"
             android:layout_width="412dp"
             android:layout_height="612dp"
-            tools:layout_editor_absoluteY="104dp" >
-
-            <RadioButton
-                android:id="@+id/Income_rad_trans"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Income"
-                android:textAlignment="center" />
-        </ListView>
+            tools:layout_editor_absoluteY="104dp" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
