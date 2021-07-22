@@ -13,6 +13,9 @@
         android:layout_marginTop="44dp"
         android:layout_marginBottom="654dp"
         android:text="Savings"
+        android:textColor="#3F5740"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
@@ -37,8 +40,8 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/savings_fragment"
-        android:layout_width="409dp"
-        android:layout_height="574dp"
+        android:layout_width="438dp"
+        android:layout_height="601dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="68dp"
         android:layout_marginEnd="4dp"

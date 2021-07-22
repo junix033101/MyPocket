@@ -8,8 +8,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
-        android:layout_width="410dp"
-        android:layout_height="716dp"
+        android:layout_width="417dp"
+        android:layout_height="605dp"
         android:background="#EBF8EC"
         app:layout_constraintTop_toTopOf="parent"
         tools:context=".Register"

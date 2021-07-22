@@ -4,104 +4,110 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#EBF8EC"
     tools:context=".add_bills">
 
     <TextView
         android:id="@+id/textView35"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="177dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="179dp"
-        android:layout_marginBottom="682dp"
         android:text="ADD BILLS"
+        android:textColor="#3F5740"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.027" />
 
     <EditText
         android:id="@+id/company_bills"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="111dp"
-        android:layout_marginEnd="39dp"
-        android:layout_marginBottom="33dp"
         android:ems="10"
         android:hint="Company"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/bills_add_amount"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView36"
-        app:layout_constraintTop_toBottomOf="@+id/textView35" />
+        app:layout_constraintHorizontal_bias="0.815"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView35"
+        app:layout_constraintVertical_bias="0.613" />
 
     <TextView
         android:id="@+id/textView36"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="53dp"
+        android:layout_marginStart="35dp"
         android:layout_marginTop="172dp"
         android:layout_marginBottom="59dp"
         android:text="Company"
+        android:textAlignment="center"
+        android:textColor="#372E29"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/textView37"
         app:layout_constraintEnd_toStartOf="@+id/company_bills"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView37"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="63dp"
         android:text="Amount"
-        app:layout_constraintBottom_toTopOf="@+id/textView38"
-        app:layout_constraintEnd_toEndOf="@+id/textView36"
+        android:textAlignment="center"
+        android:textColor="#372E29"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/bills_add_amount"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView36" />
+        tools:layout_editor_absoluteY="195dp" />
 
     <TextView
         android:id="@+id/textView38"
-        android:layout_width="wrap_content"
+        android:layout_width="60dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
         android:layout_marginTop="66dp"
         android:layout_marginBottom="363dp"
         android:text="Due Date"
+        android:textAlignment="center"
+        android:textColor="#372E29"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/textView37"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView37" />
+        app:layout_constraintTop_toBottomOf="@+id/textView37"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/bills_due_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="37dp"
-        android:layout_marginBottom="363dp"
+        android:layout_marginBottom="304dp"
         android:ems="10"
         android:hint="MM/DD/YYYY"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/bills_add_amount"
-        app:layout_constraintTop_toBottomOf="@+id/bills_add_amount" />
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toEndOf="@+id/textView38" />
 
     <EditText
         android:id="@+id/bills_add_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="38dp"
         android:layout_marginBottom="40dp"
         android:ems="10"
         android:hint="0.00"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toTopOf="@+id/bills_due_date"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/company_bills"
-        app:layout_constraintTop_toBottomOf="@+id/company_bills" />
+        app:layout_constraintHorizontal_bias="0.815"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/apply_bills_button"
@@ -110,9 +116,8 @@
         android:layout_marginStart="158dp"
         android:layout_marginTop="151dp"
         android:layout_marginEnd="159dp"
-        android:layout_marginBottom="164dp"
+        android:backgroundTint="#89A68B"
         android:text="APPLY"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bills_due_date" />
