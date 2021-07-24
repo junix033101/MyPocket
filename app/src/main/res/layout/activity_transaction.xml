@@ -31,6 +31,14 @@
             android:textAlignment="center" />
 
         <RadioButton
+            android:id="@+id/Income_rad_trans"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Income"
+            android:textAlignment="center" />
+
+        <RadioButton
             android:id="@+id/rad_savings_trans"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -70,16 +78,7 @@
             android:id="@+id/trans_list"
             android:layout_width="412dp"
             android:layout_height="612dp"
-            tools:layout_editor_absoluteY="104dp" >
-
-            <RadioButton
-                android:id="@+id/Income_rad_trans"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Income"
-                android:textAlignment="center" />
-        </ListView>
+            tools:layout_editor_absoluteY="104dp" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

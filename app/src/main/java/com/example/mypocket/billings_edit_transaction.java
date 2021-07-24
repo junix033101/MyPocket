@@ -34,35 +34,39 @@ public class billings_edit_transaction extends AppCompatActivity {
         duedate.setText(cursor.getString(2));
         company.setText(cursor.getString(3));
 
-        apply.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean check = db.updateBillsTransaction(id, Double.parseDouble(bamount.getText().toString()), duedate.getText().toString(), company.getText().toString());
-                if (check) {
-                    Toast.makeText(billings_edit_transaction.this, "Updated", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(billings_edit_transaction.this, "Error", Toast.LENGTH_SHORT).show();
-                }
-                Intent intent = new Intent(getApplication(), Billings.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtras(getIntent());
-                intent.removeExtra("position");
-                startActivity(intent);
-                finish();
+        try {
+            apply.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    boolean check = db.updateBillsTransaction(id, Double.parseDouble(bamount.getText().toString()), duedate.getText().toString(), company.getText().toString());
+                    if (check) {
+                        Toast.makeText(billings_edit_transaction.this, "Updated", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(billings_edit_transaction.this, "Error", Toast.LENGTH_SHORT).show();
+                    }
+                    Intent intent = new Intent(getApplication(), Billings.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtras(getIntent());
+                    intent.removeExtra("position");
+                    startActivity(intent);
+                    finish();
 
-                if (duedate.getText().toString().matches("July 20, 2021")) {
-                    NotificationCompat.Builder build = new NotificationCompat.Builder(billings_edit_transaction.this, "My Notification")
-                            .setSmallIcon(android.R.drawable.ic_dialog_info)
-                            .setContentTitle(company.getText().toString())
-                            .setContentText("Your bill worth " + bamount.getText().toString() + " PHP is overdue!")
-                            // .setContentIntent(contentIntent)
-                            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                            .setAutoCancel(true);
-                    NotificationManagerCompat managerCompat = NotificationManagerCompat.from(billings_edit_transaction.this);
-                    managerCompat.notify(1, build.build());
+                    if (duedate.getText().toString().matches("July 20, 2021")) {
+                        NotificationCompat.Builder build = new NotificationCompat.Builder(billings_edit_transaction.this, "My Notification")
+                                .setSmallIcon(android.R.drawable.ic_dialog_info)
+                                .setContentTitle(company.getText().toString())
+                                .setContentText("Your bill worth " + bamount.getText().toString() + " PHP is overdue!")
+                                // .setContentIntent(contentIntent)
+                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                .setAutoCancel(true);
+                        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(billings_edit_transaction.this);
+                        managerCompat.notify(1, build.build());
+                    }
                 }
-            }
-        });
+            });
+        } catch (Exception e) {
+            Toast.makeText(billings_edit_transaction.this, "Empty field!", Toast.LENGTH_SHORT).show();
+        }
 
     }
 }

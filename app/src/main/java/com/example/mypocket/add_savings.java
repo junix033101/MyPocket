@@ -34,25 +34,29 @@ public class add_savings extends Fragment {
         String date = dateN.format(Calendar.getInstance().getTime());
         sdate.setText(date);
 
-        sbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                DBHelper db = new DBHelper(getActivity().getApplicationContext());
-                String user = getActivity().getIntent().getStringExtra("user");
-                boolean check = db.createSavings(Double.parseDouble(samount.getText().toString()),user,sdate.getText().toString(),snote.getText().toString());
-                if(check){
-                    Toast.makeText(getActivity().getApplicationContext(), "Added", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getActivity(),Home.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    Intent getInt = getActivity().getIntent();
-                    double totals = db.getTotalSavings(user);
-                    intent.putExtras(getInt);
-                    intent.putExtra("totals",totals);
-                    startActivity(intent);
-                    getActivity().finish();
+        try {
+            sbtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    DBHelper db = new DBHelper(getActivity().getApplicationContext());
+                    String user = getActivity().getIntent().getStringExtra("user");
+                    boolean check = db.createSavings(Double.parseDouble(samount.getText().toString()),user,sdate.getText().toString(),snote.getText().toString());
+                    if(check){
+                        Toast.makeText(getActivity().getApplicationContext(), "Added", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getActivity(),Home.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        Intent getInt = getActivity().getIntent();
+                        double totals = db.getTotalSavings(user);
+                        intent.putExtras(getInt);
+                        intent.putExtra("totals",totals);
+                        startActivity(intent);
+                        getActivity().finish();
+                    }
                 }
-            }
-        });
+            });
+        } catch (Exception e) {
+            Toast.makeText(getActivity(), "Empty field!", Toast.LENGTH_SHORT).show();
+        }
 
         return view;
     }

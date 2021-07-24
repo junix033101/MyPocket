@@ -1,11 +1,13 @@
 package com.example.mypocket;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -95,6 +97,56 @@ public class Categories extends AppCompatActivity{
 
             }
         });
+
+        ImageButton save = findViewById(R.id.csave);
+        ImageButton home = findViewById(R.id.chome);
+        ImageButton history = findViewById(R.id.ctrans);
+        ImageButton bills = findViewById(R.id.cbills);
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Categories.this, Savings.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent getInt = getIntent();
+                intent.putExtras(getInt);
+                startActivity(intent);
+
+            }
+        });
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Categories.this, Home.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent getInt = getIntent();
+                intent.putExtras(getInt);
+                startActivity(intent);
+            }
+        });
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Categories.this, Transaction.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent getInt = getIntent();
+                intent.putExtras(getInt);
+                startActivity(intent);
+            }
+        });
+        bills.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Categories.this, Billings.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent getInt = getIntent();
+                intent.putExtras(getInt);
+                startActivity(intent);
+            }
+        });
+
+
+
     }
 
     public void ExpenseDialog(){

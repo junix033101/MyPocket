@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -122,6 +123,46 @@ public class Billings extends AppCompatActivity {
 
             }
         });
+        ImageButton save = findViewById(R.id.bsavings_button);
+        ImageButton home = findViewById(R.id.bhome_button);
+        ImageButton history = findViewById(R.id.bhistory_button);
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Billings.this, Savings.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent getInt = getIntent();
+                intent.putExtras(getInt);
+                startActivity(intent);
+
+            }
+        });
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Billings.this, Home.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent getInt = getIntent();
+                intent.putExtras(getInt);
+                startActivity(intent);
+            }
+        });
+        history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Billings.this, Transaction.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                Intent getInt = getIntent();
+                intent.putExtras(getInt);
+                startActivity(intent);
+            }
+        });
+
+
+
+
+
 
     }
     @Override

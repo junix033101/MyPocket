@@ -31,54 +31,58 @@ public class add_bills extends AppCompatActivity {
         duedate.setText(date);
 
 
-        applyb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DBHelper db = new DBHelper(add_bills.this);
-                String user = getIntent().getStringExtra("user");
-                boolean check = db.createBills(Double.parseDouble(amount.getText().toString()),user,duedate.getText().toString(),company.getText().toString());
-                if(check){
-                    Toast.makeText(getApplicationContext(), "Added", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(add_bills.this, Billings.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    Intent getInt = getIntent();
-                    intent.putExtras(getInt);
-                    if(duedate.getText().toString().matches("July 22, 2021")){
-                        NotificationCompat.Builder build = new NotificationCompat.Builder(add_bills.this,"My Notification")
-                                .setSmallIcon(android.R.drawable.ic_dialog_info)
-                                .setContentTitle(company.getText().toString())
-                                .setContentText("Your bill is due tomorrow worth "+amount.getText().toString()+" PHP")
-                                // .setContentIntent(contentIntent)
-                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                                .setAutoCancel(true);
-                        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(add_bills.this);
-                        managerCompat.notify(1,build.build());
-                    }
-                    else if (duedate.getText().toString().matches("July 21, 2021")){
-                        NotificationCompat.Builder build = new NotificationCompat.Builder(add_bills.this,"My Notification")
-                                .setSmallIcon(android.R.drawable.ic_dialog_info)
-                                .setContentTitle(company.getText().toString())
-                                .setContentText("Your bill is due today worth "+amount.getText().toString()+" PHP")
-                                // .setContentIntent(contentIntent)
-                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                                .setAutoCancel(true);
-                        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(add_bills.this);
-                        managerCompat.notify(1,build.build());
+        try {
+            applyb.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    DBHelper db = new DBHelper(add_bills.this);
+                    String user = getIntent().getStringExtra("user");
+                    boolean check = db.createBills(Double.parseDouble(amount.getText().toString()),user,duedate.getText().toString(),company.getText().toString());
+                    if(check){
+                        Toast.makeText(getApplicationContext(), "Added", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(add_bills.this, Billings.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        Intent getInt = getIntent();
+                        intent.putExtras(getInt);
+                        if(duedate.getText().toString().matches("July 29, 2021")){
+                            NotificationCompat.Builder build = new NotificationCompat.Builder(add_bills.this,"My Notification")
+                                    .setSmallIcon(android.R.drawable.ic_dialog_info)
+                                    .setContentTitle(company.getText().toString())
+                                    .setContentText("Your bill is due tomorrow worth "+amount.getText().toString()+" PHP")
+                                    // .setContentIntent(contentIntent)
+                                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                    .setAutoCancel(true);
+                            NotificationManagerCompat managerCompat = NotificationManagerCompat.from(add_bills.this);
+                            managerCompat.notify(1,build.build());
+                        }
+                        else if (duedate.getText().toString().matches("July 28, 2021")){
+                            NotificationCompat.Builder build = new NotificationCompat.Builder(add_bills.this,"My Notification")
+                                    .setSmallIcon(android.R.drawable.ic_dialog_info)
+                                    .setContentTitle(company.getText().toString())
+                                    .setContentText("Your bill is due today worth "+amount.getText().toString()+" PHP")
+                                    // .setContentIntent(contentIntent)
+                                    .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                    .setAutoCancel(true);
+                            NotificationManagerCompat managerCompat = NotificationManagerCompat.from(add_bills.this);
+                            managerCompat.notify(1,build.build());
+
+                        }
+
+                        else{
+
+                        }
+                        startActivity(intent);
+                        finish();
+
 
                     }
-
-                    else{
-
-                    }
-                    startActivity(intent);
-                    finish();
 
 
                 }
-
-
-            }
-        });
+            });
+        } catch (Exception e) {
+            Toast.makeText(add_bills.this, "Empty field!", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

@@ -72,27 +72,31 @@ public class add_expenses extends Fragment {
                 else{
                     String selecteditem = parent.getItemAtPosition(position).toString();
 
-                    btn.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
+                    try {
+                        btn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
 
 
-                            DBHelper db = new DBHelper(getActivity().getApplicationContext());
-                            String user = getActivity().getIntent().getStringExtra("user");
-                            boolean check = db.createExpense(Double.parseDouble(amount.getText().toString()),user,actv.getText().toString(),selecteditem,enote.getText().toString());
-                            if(check){
-                                Toast.makeText(getActivity().getApplicationContext(), "Added", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getActivity(),Home.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                Intent getInt = getActivity().getIntent();
-                                double total = db.getTotalExpenses(user);
-                                intent.putExtras(getInt);
-                                intent.putExtra("total",total);
-                                startActivity(intent);
-                                getActivity().finish();
+                                DBHelper db = new DBHelper(getActivity().getApplicationContext());
+                                String user = getActivity().getIntent().getStringExtra("user");
+                                boolean check = db.createExpense(Double.parseDouble(amount.getText().toString()),user,actv.getText().toString(),selecteditem,enote.getText().toString());
+                                if(check){
+                                    Toast.makeText(getActivity().getApplicationContext(), "Added", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getActivity(),Home.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    Intent getInt = getActivity().getIntent();
+                                    double total = db.getTotalExpenses(user);
+                                    intent.putExtras(getInt);
+                                    intent.putExtra("total",total);
+                                    startActivity(intent);
+                                    getActivity().finish();
+                                }
                             }
-                        }
-                    });
+                        });
+                    } catch (Exception e) {
+                        Toast.makeText(getActivity(), "Empty field!", Toast.LENGTH_SHORT).show();
+                    }
                 }
 
             }

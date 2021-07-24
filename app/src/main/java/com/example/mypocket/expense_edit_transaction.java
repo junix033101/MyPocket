@@ -43,22 +43,26 @@ public class expense_edit_transaction extends AppCompatActivity {
         excategory.setSelection(myAdapter.getPosition(cursor.getString(3)));
 
 
-        applyex.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean check =db.updateExpenseTransaction(id,Double.parseDouble(examount.getText().toString()),excategory.getSelectedItem().toString(),exdate.getText().toString(),exnote.getText().toString());
-                if(check){
-                    Toast.makeText(expense_edit_transaction.this, "Updated", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(expense_edit_transaction.this, "Error", Toast.LENGTH_SHORT).show();
+        try {
+            applyex.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    boolean check =db.updateExpenseTransaction(id,Double.parseDouble(examount.getText().toString()),excategory.getSelectedItem().toString(),exdate.getText().toString(),exnote.getText().toString());
+                    if(check){
+                        Toast.makeText(expense_edit_transaction.this, "Updated", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(expense_edit_transaction.this, "Error", Toast.LENGTH_SHORT).show();
+                    }
+                    Intent intent = new Intent(getApplication(), Transaction_details.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtras(getIntent());
+                    intent.removeExtra("position");
+                    startActivity(intent);
+                    finish();
                 }
-                Intent intent = new Intent(getApplication(), Transaction_details.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtras(getIntent());
-                intent.removeExtra("position");
-                startActivity(intent);
-                finish();
-            }
-        });
+            });
+        } catch (Exception e) {
+            Toast.makeText(expense_edit_transaction.this, "Empty field!", Toast.LENGTH_SHORT).show();
+        }
     }
 }

@@ -76,27 +76,31 @@ public class add_income extends Fragment  {
                     String selecteditem = parent.getItemAtPosition(position).toString();
 //                    Toast.makeText(getActivity().getBaseContext(), ""+selecteditem, Toast.LENGTH_SHORT).show();
 
-                    addincome.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            DBHelper db = new DBHelper(getActivity().getApplicationContext());
-                            String user = getActivity().getIntent().getStringExtra("user");
-                            boolean check = db.createIncome(Double.parseDouble(incomeamount.getText().toString()),user,datein.getText().toString(),selecteditem,inote.getText().toString());
-                            if(check){
-                                Toast.makeText(getActivity().getApplicationContext(), "Added", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getActivity(),Home.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                                Intent getInt = getActivity().getIntent();
-                                intent.putExtras(getInt);
+                    try {
+                        addincome.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                DBHelper db = new DBHelper(getActivity().getApplicationContext());
+                                String user = getActivity().getIntent().getStringExtra("user");
+                                boolean check = db.createIncome(Double.parseDouble(incomeamount.getText().toString()),user,datein.getText().toString(),selecteditem,inote.getText().toString());
+                                if(check){
+                                    Toast.makeText(getActivity().getApplicationContext(), "Added", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getActivity(),Home.class);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    Intent getInt = getActivity().getIntent();
+                                    intent.putExtras(getInt);
 
-                                double totalinc = db.getTotalIncome(user);
+                                    double totalinc = db.getTotalIncome(user);
 
-                                intent.putExtra("totalinc",totalinc);
-                                startActivity(intent);
-                                getActivity().finish();
+                                    intent.putExtra("totalinc",totalinc);
+                                    startActivity(intent);
+                                    getActivity().finish();
+                                }
                             }
-                        }
-                    });
+                        });
+                    } catch (Exception e) {
+                        Toast.makeText(getActivity(), "Empty field!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
 
