@@ -34,11 +34,15 @@ public class billings_edit_transaction extends AppCompatActivity {
         duedate.setText(cursor.getString(2));
         company.setText(cursor.getString(3));
 
-        try {
             apply.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    boolean check = db.updateBillsTransaction(id, Double.parseDouble(bamount.getText().toString()), duedate.getText().toString(), company.getText().toString());
+                    boolean check = false;
+                    try {
+                        check = db.updateBillsTransaction(id, Double.parseDouble(bamount.getText().toString()), duedate.getText().toString(), company.getText().toString());
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(getApplicationContext(), "Empty field!", Toast.LENGTH_SHORT).show();
+                    }
                     if (check) {
                         Toast.makeText(billings_edit_transaction.this, "Updated", Toast.LENGTH_SHORT).show();
                     } else {
@@ -64,9 +68,7 @@ public class billings_edit_transaction extends AppCompatActivity {
                     }
                 }
             });
-        } catch (Exception e) {
-            Toast.makeText(billings_edit_transaction.this, "Empty field!", Toast.LENGTH_SHORT).show();
-        }
+
 
     }
 }

@@ -34,13 +34,20 @@ public class add_savings extends Fragment {
         String date = dateN.format(Calendar.getInstance().getTime());
         sdate.setText(date);
 
-        try {
+
             sbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    DBHelper db = new DBHelper(getActivity().getApplicationContext());
-                    String user = getActivity().getIntent().getStringExtra("user");
-                    boolean check = db.createSavings(Double.parseDouble(samount.getText().toString()),user,sdate.getText().toString(),snote.getText().toString());
+                    DBHelper db = null;
+                    String user = null;
+                    boolean check = false;
+                    try {
+                        db = new DBHelper(getActivity().getApplicationContext());
+                        user = getActivity().getIntent().getStringExtra("user");
+                        check = db.createSavings(Double.parseDouble(samount.getText().toString()),user,sdate.getText().toString(),snote.getText().toString());
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(getActivity().getApplicationContext(), "Empty field!", Toast.LENGTH_SHORT).show();
+                    }
                     if(check){
                         Toast.makeText(getActivity().getApplicationContext(), "Added", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getActivity(),Home.class);
@@ -54,9 +61,6 @@ public class add_savings extends Fragment {
                     }
                 }
             });
-        } catch (Exception e) {
-            Toast.makeText(getActivity(), "Empty field!", Toast.LENGTH_SHORT).show();
-        }
 
         return view;
     }

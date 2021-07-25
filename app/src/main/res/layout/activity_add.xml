@@ -43,7 +43,9 @@
             android:buttonTint="#89A68B"
             android:gravity="center"
             android:text="Expense"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="#252320"
+            android:textStyle="bold"/>
 
         <RadioButton
             android:id="@+id/income_trans_btn"
@@ -52,7 +54,9 @@
             android:layout_gravity="center"
             android:buttonTint="#89A68B"
             android:text="Income"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="#252320"
+            android:textStyle="bold" />
 
     </RadioGroup>
 

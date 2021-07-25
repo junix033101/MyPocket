@@ -43,11 +43,16 @@ public class expense_edit_transaction extends AppCompatActivity {
         excategory.setSelection(myAdapter.getPosition(cursor.getString(3)));
 
 
-        try {
+
             applyex.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    boolean check =db.updateExpenseTransaction(id,Double.parseDouble(examount.getText().toString()),excategory.getSelectedItem().toString(),exdate.getText().toString(),exnote.getText().toString());
+                    boolean check = false;
+                    try {
+                        check = db.updateExpenseTransaction(id,Double.parseDouble(examount.getText().toString()),excategory.getSelectedItem().toString(),exdate.getText().toString(),exnote.getText().toString());
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(getApplicationContext(), "Empty field!", Toast.LENGTH_SHORT).show();
+                    }
                     if(check){
                         Toast.makeText(expense_edit_transaction.this, "Updated", Toast.LENGTH_SHORT).show();
                     }else{
@@ -61,8 +66,6 @@ public class expense_edit_transaction extends AppCompatActivity {
                     finish();
                 }
             });
-        } catch (Exception e) {
-            Toast.makeText(expense_edit_transaction.this, "Empty field!", Toast.LENGTH_SHORT).show();
-        }
+
     }
 }

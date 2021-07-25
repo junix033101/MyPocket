@@ -31,12 +31,15 @@ public class savings_edit_transaction extends AppCompatActivity {
         sdate.setText(cursor.getString(2));
         snote.setText(cursor.getString(3));
 
-
-        try {
             applys.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    boolean check =db.updateSavingsTransaction(id,Double.parseDouble(samount.getText().toString()),sdate.getText().toString(),snote.getText().toString());
+                    boolean check = false;
+                    try {
+                        check = db.updateSavingsTransaction(id,Double.parseDouble(samount.getText().toString()),sdate.getText().toString(),snote.getText().toString());
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(getApplicationContext(), "Empty field!", Toast.LENGTH_SHORT).show();
+                    }
                     if(check){
                         Toast.makeText(savings_edit_transaction.this, "Updated", Toast.LENGTH_SHORT).show();
                     }else{
@@ -50,8 +53,5 @@ public class savings_edit_transaction extends AppCompatActivity {
                     finish();
                 }
             });
-        } catch (Exception e) {
-            Toast.makeText(savings_edit_transaction.this, "Empty field!", Toast.LENGTH_SHORT).show();
-        }
     }
 }

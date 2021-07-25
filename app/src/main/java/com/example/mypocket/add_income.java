@@ -76,13 +76,19 @@ public class add_income extends Fragment  {
                     String selecteditem = parent.getItemAtPosition(position).toString();
 //                    Toast.makeText(getActivity().getBaseContext(), ""+selecteditem, Toast.LENGTH_SHORT).show();
 
-                    try {
                         addincome.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-                                DBHelper db = new DBHelper(getActivity().getApplicationContext());
-                                String user = getActivity().getIntent().getStringExtra("user");
-                                boolean check = db.createIncome(Double.parseDouble(incomeamount.getText().toString()),user,datein.getText().toString(),selecteditem,inote.getText().toString());
+                                DBHelper db = null;
+                                String user = null;
+                                boolean check = false;
+                                try {
+                                    db = new DBHelper(getActivity().getApplicationContext());
+                                    user = getActivity().getIntent().getStringExtra("user");
+                                    check = db.createIncome(Double.parseDouble(incomeamount.getText().toString()),user,datein.getText().toString(),selecteditem,inote.getText().toString());
+                                } catch (NumberFormatException e) {
+                                    Toast.makeText(getActivity().getApplicationContext(), "Empty field!", Toast.LENGTH_SHORT).show();
+                                }
                                 if(check){
                                     Toast.makeText(getActivity().getApplicationContext(), "Added", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getActivity(),Home.class);
@@ -98,9 +104,6 @@ public class add_income extends Fragment  {
                                 }
                             }
                         });
-                    } catch (Exception e) {
-                        Toast.makeText(getActivity(), "Empty field!", Toast.LENGTH_SHORT).show();
-                    }
                 }
             }
 

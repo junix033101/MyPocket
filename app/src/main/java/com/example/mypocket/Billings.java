@@ -106,7 +106,7 @@ public class Billings extends AppCompatActivity {
                 builder1.setNeutralButton("PAID", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        boolean check = db.createExpense(cursor.getDouble(4),user,date,"Bills","");
+                        boolean check = db.createExpense(cursor.getDouble(4),user,date,"Bills",cursor.getString(3));
                         if(check){
                             Toast.makeText(getApplicationContext(), "Paid", Toast.LENGTH_SHORT).show();
                             startActivity(getIntent().addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).putExtras(getIntent()));

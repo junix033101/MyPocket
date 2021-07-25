@@ -31,13 +31,18 @@ public class add_bills extends AppCompatActivity {
         duedate.setText(date);
 
 
-        try {
+
             applyb.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    DBHelper db = new DBHelper(add_bills.this);
-                    String user = getIntent().getStringExtra("user");
-                    boolean check = db.createBills(Double.parseDouble(amount.getText().toString()),user,duedate.getText().toString(),company.getText().toString());
+                    boolean check = false;
+                    try {
+                        DBHelper db = new DBHelper(add_bills.this);
+                        String user = getIntent().getStringExtra("user");
+                        check = db.createBills(Double.parseDouble(amount.getText().toString()),user,duedate.getText().toString(),company.getText().toString());
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(getApplicationContext(), "Empty field!", Toast.LENGTH_SHORT).show();
+                    }
                     if(check){
                         Toast.makeText(getApplicationContext(), "Added", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(add_bills.this, Billings.class);
@@ -80,9 +85,6 @@ public class add_bills extends AppCompatActivity {
 
                 }
             });
-        } catch (Exception e) {
-            Toast.makeText(add_bills.this, "Empty field!", Toast.LENGTH_SHORT).show();
-        }
     }
 
 }

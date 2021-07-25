@@ -72,15 +72,21 @@ public class add_expenses extends Fragment {
                 else{
                     String selecteditem = parent.getItemAtPosition(position).toString();
 
-                    try {
                         btn.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
 
+                                DBHelper db = null;
+                                String user = null;
+                                boolean check = false;
+                                try {
+                                    db = new DBHelper(getActivity().getApplicationContext());
+                                    user = getActivity().getIntent().getStringExtra("user");
+                                    check = db.createExpense(Double.parseDouble(amount.getText().toString()),user,actv.getText().toString(),selecteditem,enote.getText().toString());
+                                } catch (NumberFormatException e) {
+                                    Toast.makeText(getActivity().getApplicationContext(), "Empty field!", Toast.LENGTH_SHORT).show();
 
-                                DBHelper db = new DBHelper(getActivity().getApplicationContext());
-                                String user = getActivity().getIntent().getStringExtra("user");
-                                boolean check = db.createExpense(Double.parseDouble(amount.getText().toString()),user,actv.getText().toString(),selecteditem,enote.getText().toString());
+                                }
                                 if(check){
                                     Toast.makeText(getActivity().getApplicationContext(), "Added", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getActivity(),Home.class);
@@ -94,9 +100,8 @@ public class add_expenses extends Fragment {
                                 }
                             }
                         });
-                    } catch (Exception e) {
-                        Toast.makeText(getActivity(), "Empty field!", Toast.LENGTH_SHORT).show();
-                    }
+
+
                 }
 
             }

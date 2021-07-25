@@ -41,11 +41,16 @@ public class income_edit_transaction extends AppCompatActivity {
         category.setAdapter(myAdapter);
         category.setSelection(myAdapter.getPosition(cursor.getString(3)));
 
-        try {
+
             apply.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    boolean check =db.updateIncomeTransaction(id,Double.parseDouble(amount.getText().toString()),category.getSelectedItem().toString(),date.getText().toString(),note.getText().toString());
+                    boolean check = false;
+                    try {
+                        check = db.updateIncomeTransaction(id,Double.parseDouble(amount.getText().toString()),category.getSelectedItem().toString(),date.getText().toString(),note.getText().toString());
+                    } catch (NumberFormatException e) {
+                        Toast.makeText(getApplicationContext(), "Empty field!", Toast.LENGTH_SHORT).show();
+                    }
                     if(check){
                         Toast.makeText(income_edit_transaction.this, "Updated", Toast.LENGTH_SHORT).show();
                     }else{
@@ -59,9 +64,6 @@ public class income_edit_transaction extends AppCompatActivity {
                     finish();
                 }
             });
-        } catch (Exception e) {
-            Toast.makeText(income_edit_transaction.this, "Empty field!", Toast.LENGTH_SHORT).show();
-        }
 
     }
 }

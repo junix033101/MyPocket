@@ -18,7 +18,9 @@
         app:headerLayout="@layout/header"
         app:menu="@menu/sidemenu"
         android:background="#EBF8EC"
-        android:layout_gravity="start">
+        android:layout_gravity="start"
+        app:itemIconTint="@color/green"
+        app:itemTextColor="#76A178">
 
     </com.google.android.material.navigation.NavigationView>
 
